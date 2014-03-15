@@ -1,0 +1,31 @@
+{
+  "name": "angulert",
+  "main": "angulert.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/dhallsim/angulert",
+  "authors": [
+    "Derek Hall <dsh8837@gmail.com>",
+    "Ian Shoemaker <iss90g@gmail.com>"
+  ],
+  "description": "Awesome angular alert module",
+  "keywords": [
+    "angular",
+    "notifications",
+    "angulert",
+    "awesome",
+    "alert"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.14",
+    "angular-mocks": "~1.2.14"
+  }
+}
