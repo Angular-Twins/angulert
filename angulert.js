@@ -1,0 +1,42 @@
+var dependancies = [];
+
+angular.module('angulert', dependancies).
+provider('$angulert', [function () {
+
+  var _config = {};
+  var _history = [];
+
+  var $angulertProvider = {
+    $get: ['$rootScope', '$q', '$http', '$templateCache', '$controller',
+    function ($rootScope, $q, $http, $templateCache, $controller, ) {
+      return {
+        addAlert: function(alert) {
+
+        },
+        deleteAlert: function(id) {
+
+        },
+        getAlert: function(id) {
+
+        },
+        updateAlert: function(alert) {
+
+        },
+        getHistory: function() {
+          return _history;
+        },
+        deleteHistory: function() {
+          _history = [];
+        }
+      };
+    }];
+  };
+}]).
+directive('angulert', [function () {
+  return {
+    restrict: 'EA',
+    link: function (scope, element, attrs) {
+      
+    }
+  };
+}]);
