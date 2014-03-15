@@ -1,0 +1,36 @@
+{
+  "name": "angulert",
+  "version": "0.0.0",
+  "description": "Awesome angular alert module",
+  "main": "angulert.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://dhallsim@github.com/dhallsim/angulert.git"
+  },
+  "keywords": [
+    "angular",
+    "notifications",
+    "angulert",
+    "awesome"
+  ],
+  "author": "Derek Hall",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dhallsim/angulert/issues"
+  },
+  "homepage": "https://github.com/dhallsim/angulert",
+  "devDependencies": {
+    "gulp": "~3.5.6",
+    "gulp-protractor": "0.0.7",
+    "protractor": "~0.20.1",
+    "karma": "~0.12.0",
+    "gulp-karma": "0.0.4",
+    "gulp-html2js": "0.0.1",
+    "gulp-uglify": "~0.2.1",
+    "gulp-concat": "~2.1.7",
+    "gulp-recess": "~0.2.0"
+  }
+}
