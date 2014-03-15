@@ -5,6 +5,12 @@ angular.module('angulert', dependencies)
 
   var _config = {};
 
+  this.setConfig = function(config) {
+    for(var prop in config) {
+      _config[prop] = config[prop];
+    }
+  };
+
   this.$get = ['$rootScope', '$q', '$http', '$templateCache', '$controller',
     function($rootScope, $q, $http, $templateCache, $controller) {
       var _history = [];
@@ -28,6 +34,9 @@ angular.module('angulert', dependencies)
         },
         deleteHistory: function() {
           _history = [];
+        },
+        getConfig: function() {
+          return _config;
         }
       };
 
