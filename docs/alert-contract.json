@@ -1,0 +1,12 @@
+{
+  message: {
+    header: '',
+    body: '',
+    footer: '',
+    icon: ''
+  }, || '',
+  read: false,
+  icon: 'checkmark',  // glyphicon or font awesome support
+  importance: 1,
+  classes: []
+}
