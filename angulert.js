@@ -4,12 +4,15 @@ angular.module('angulert', dependancies).
 provider('$angulert', [function () {
 
   var _config = {};
-  var _history = [];
 
   var $angulertProvider = {
     $get: ['$rootScope', '$q', '$http', '$templateCache', '$controller',
-    function ($rootScope, $q, $http, $templateCache, $controller, ) {
-      return {
+    function ($rootScope, $q, $http, $templateCache, $controller) {
+
+      var _history = [];
+      var _alerts = [];
+
+      var angulertService = {
         addAlert: function(alert) {
 
         },
@@ -29,6 +32,8 @@ provider('$angulert', [function () {
           _history = [];
         }
       };
+
+      return angulertService;
     }];
   };
 }]).
@@ -36,7 +41,7 @@ directive('angulert', [function () {
   return {
     restrict: 'EA',
     link: function (scope, element, attrs) {
-      
+
     }
   };
 }]);
