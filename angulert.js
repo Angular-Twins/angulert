@@ -1,6 +1,6 @@
-var dependancies = [];
+var dependencies = [];
 
-angular.module('angulert', dependancies).
+angular.module('angulert', dependencies).
 provider('$angulert', [function () {
 
   var _config = {};
