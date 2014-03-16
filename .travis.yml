@@ -6,4 +6,4 @@ before_script:
   - npm install --quiet -g karma-cli
 
 script:
-  - karma start karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=FireFox
+  - karma start karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
