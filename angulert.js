@@ -33,11 +33,11 @@ provider('$angulert', [function () {
         updateAlert: [],
         getHistory: [],
         deleteHistory: []
-      }
+      };
 
       var addAlertToDom = function() {
         
-      }
+      };
 
       listeners.addAlert.push(addAlertToDom);
 

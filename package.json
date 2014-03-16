@@ -16,12 +16,11 @@
     "angulert",
     "awesome"
   ],
-  "author": "https://github.com/angular-ui/bootstrap/graphs/contributors",
+  "author": "https://github.com/Angular-Twins/angulert/graphs/contributors",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dhallsim/angulert/issues"
+    "url": "https://github.com/Angular-Twins/angulert/issues"
   },
-  "homepage": "https://github.com/dhallsim/angulert",
   "devDependencies": {
     "gulp": "~3.5.6",
     "gulp-protractor": "0.0.7",
