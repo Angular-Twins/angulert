@@ -18,6 +18,14 @@ describe('angulert service', function() {
     }));
   });
 
+  it('should get alerts', inject(function($injector) {
+    var $angulert = $injector.get('$angulert');
+    $angulert.addAlert({
+      message: 'Alert'
+    });
+    expect($angulert.getAlerts()).toEqual([{message: 'Alert'}]);
+  }));
+
   it('should clear alerts', inject(function($injector) {
     var $angulert = $injector.get('$angulert');
     $angulert.addAlert({

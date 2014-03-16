@@ -105,8 +105,7 @@ provider('$angulert', [function () {
   ]
 }]).
 // DOM representation of angulert center display
-directive('angulert-center', ['$angulert', function ($angulert) {
-  
+directive('angulert-center', ['$angulert', function($angulert) {
   return {
     restrict: 'EA',
     link: function (scope, element, attrs) {
@@ -115,7 +114,7 @@ directive('angulert-center', ['$angulert', function ($angulert) {
   };
 }]).
 // DOM representation of individual alerts
-directive('angulert', [function () {
+directive('angulert', [function() {
   return {
     restrict: 'EA',
     link: function (scope, element, attrs) {
