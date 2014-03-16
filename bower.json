@@ -22,9 +22,12 @@
     "bower_components",
     "app/bower_components",
     "test",
-    "tests"
+    "gulpfile.js",
+    "package.json",
+    "karma.conf.js",
+    "protractor.conf.js"
   ],
-  "dependencies": {
+  "devDependencies": {
     "angular": "~1.2.14",
     "angular-mocks": "~1.2.14"
   }
