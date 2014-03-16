@@ -3,9 +3,6 @@
   "version": "0.0.0",
   "description": "Awesome angular alert module",
   "main": "angulert.js",
-  "scripts": {
-    "test": "./node_modules/.bin/karma start --no-auto-watch --single-run --reporters=dots --browsers=Firefox"
-  },
   "repository": {
     "type": "git",
     "url": "https://dhallsim@github.com/dhallsim/angulert.git"
