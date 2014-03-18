@@ -74,7 +74,7 @@ gulp.task('server', function(next) {
 });
 
 gulp.task('watch', function() {
-  gulp.watch([path.js, path.css], ['build-js', 'build-css']);
+  gulp.watch([path.js, path.css, path.templates], ['build-js', 'build-css']);
 });
 
 gulp.task('default', [ 'build-js', 'build-css', 'watch', 'test', 'server']);
