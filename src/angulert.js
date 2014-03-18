@@ -1,4 +1,7 @@
-var dependencies = [];
+var dependencies = [
+  'templates/angulert-center.tpl.html',
+  'templates/angulert.tpl.html'
+];
 
 angular.module('angulert', dependencies).
 provider('$angulert', [function () {

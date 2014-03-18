@@ -1,14 +1,17 @@
-angular.module("../templates/angulert-center.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("../templates/angulert-center.tpl.html",
+angular.module("templates/angulert-center.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/angulert-center.tpl.html",
     "<div>This is the Center</div>");
 }]);
 
-angular.module("../templates/angulert.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("../templates/angulert.tpl.html",
+angular.module("templates/angulert.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/angulert.tpl.html",
     "<div>This is the Alert</div>");
 }]);
 
-var dependencies = [];
+var dependencies = [
+  'templates/angulert-center.tpl.html',
+  'templates/angulert.tpl.html'
+];
 
 angular.module('angulert', dependencies).
 provider('$angulert', [function () {
