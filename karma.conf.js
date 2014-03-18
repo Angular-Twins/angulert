@@ -17,7 +17,7 @@ module.exports = function(config) {
     files: [
       'test/lib/angular.js',
       'test/lib/angular-mocks.js',
-      'dist/**/*.js',
+      'dist/angulert.js',
       'test/unit/**/*-spec.js'
     ],
 
