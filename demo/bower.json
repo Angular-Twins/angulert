@@ -1,0 +1,26 @@
+{
+  "name": "angulert-demo",
+  "version": "0.0.0",
+  "homepage": "https://github.com/dhallsim/angulert",
+  "authors": [
+    "Ian Shoemaker <ishoemaker@candoris.com>",
+    "Derek Hall <dsh8837@gmail.com>"
+  ],
+  "description": "Angulert Demo",
+  "main": "angulert.js",
+  "keywords": [
+    "angulert",
+    "demo"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1"
+  }
+}
