@@ -105,9 +105,11 @@ provider('$angulert', [function () {
   ]
 }]).
 // DOM representation of angulert center display
-directive('angulert-center', ['$angulert', function($angulert) {
+directive('angulertCenter', ['$angulert', function($angulert) {
   return {
     restrict: 'EA',
+    replace: true,
+    templateUrl: 'templates/angulert-center.tpl.html',
     link: function (scope, element, attrs) {
 
     }
@@ -117,11 +119,9 @@ directive('angulert-center', ['$angulert', function($angulert) {
 directive('angulert', [function() {
   return {
     restrict: 'EA',
+    templateUrl: 'templates/angulert.tpl.html',
     link: function (scope, element, attrs) {
 
     }
   };
 }]);
-
-
-

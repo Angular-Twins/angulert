@@ -1,3 +1,13 @@
+angular.module("../templates/angulert-center.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("../templates/angulert-center.tpl.html",
+    "<div>This is the Center</div>");
+}]);
+
+angular.module("../templates/angulert.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("../templates/angulert.tpl.html",
+    "<div>This is the Alert</div>");
+}]);
+
 var dependencies = [];
 
 angular.module('angulert', dependencies).
@@ -105,9 +115,11 @@ provider('$angulert', [function () {
   ]
 }]).
 // DOM representation of angulert center display
-directive('angulert-center', ['$angulert', function($angulert) {
+directive('angulertCenter', ['$angulert', function($angulert) {
   return {
     restrict: 'EA',
+    replace: true,
+    templateUrl: 'templates/angulert-center.tpl.html',
     link: function (scope, element, attrs) {
 
     }
@@ -117,11 +129,9 @@ directive('angulert-center', ['$angulert', function($angulert) {
 directive('angulert', [function() {
   return {
     restrict: 'EA',
+    templateUrl: 'templates/angulert.tpl.html',
     link: function (scope, element, attrs) {
 
     }
   };
 }]);
-
-
-
