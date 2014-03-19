@@ -1,6 +1,17 @@
 angular.module("templates/angulert-center.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("templates/angulert-center.tpl.html",
-    "<div>This is the Center</div>");
+    "<li class=\"dropdown\">\n" +
+    "  <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><span class=\"badge pull-right\">0</span>\n" +
+    "    <i class=\"glyphicon glyphicon-bell\"></i>\n" +
+    "  </a>\n" +
+    "  <ul class=\"dropdown-menu\">\n" +
+    "    <li><a href=\"#\">Action</a></li>\n" +
+    "    <li><a href=\"#\">Another action</a></li>\n" +
+    "    <li><a href=\"#\">Something else here</a></li>\n" +
+    "    <li class=\"divider\"></li>\n" +
+    "    <li><a href=\"#\">Separated link</a></li>\n" +
+    "  </ul>\n" +
+    "</li>");
 }]);
 
 angular.module("templates/angulert.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -110,6 +121,9 @@ provider('$angulert', [function () {
         },
         clearHistory: function() {
           _history = [];
+        },
+        toggleCenter: function() {
+          _shown = !_shown;
         }
       };
 
@@ -124,7 +138,10 @@ directive('angulertCenter', ['$angulert', function($angulert) {
     replace: true,
     templateUrl: 'templates/angulert-center.tpl.html',
     link: function (scope, element, attrs) {
-
+      scope.angulertService = $angulert.getAlerts();
+      scope.$watch('angulertService', function(newValue, oldValue){
+        console.log('New', newValue, 'Old', oldValue);
+      });
     }
   };
 }]).

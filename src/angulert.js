@@ -100,6 +100,9 @@ provider('$angulert', [function () {
         },
         clearHistory: function() {
           _history = [];
+        },
+        toggleCenter: function() {
+          _shown = !_shown;
         }
       };
 
@@ -114,7 +117,10 @@ directive('angulertCenter', ['$angulert', function($angulert) {
     replace: true,
     templateUrl: 'templates/angulert-center.tpl.html',
     link: function (scope, element, attrs) {
-
+      scope.angulertService = $angulert.getAlerts();
+      scope.$watch('angulertService', function(newValue, oldValue){
+        console.log('New', newValue, 'Old', oldValue);
+      });
     }
   };
 }]).
