@@ -75,6 +75,7 @@ provider('$angulert', [function () {
         addAlert: function(alert) {
           if (!_serviceConfig.disabled) {
             _alerts.push(alert);
+            console.log('Added alert');
             listeners.addAlert.forEach(function(listener) {
               listener(alert);
             });
@@ -84,6 +85,7 @@ provider('$angulert', [function () {
 
         },
         getAlerts: function() {
+          console.log('getting alerts');
           return _alerts;
         },
         clearAlerts: function() {
@@ -117,10 +119,11 @@ directive('angulertCenter', ['$angulert', function($angulert) {
     replace: true,
     templateUrl: 'templates/angulert-center.tpl.html',
     link: function (scope, element, attrs) {
-      scope.angulertService = $angulert.getAlerts();
-      scope.$watch('angulertService', function(newValue, oldValue){
-        console.log('New', newValue, 'Old', oldValue);
-      });
+      scope.angulertService = $angulert;
+
+      scope.$watch('angulertService.getAlerts()', function(newValue, oldValue){
+        scope.alerts = newValue;
+      }, true);
     }
   };
 }]).

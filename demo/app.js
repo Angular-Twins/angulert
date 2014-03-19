@@ -4,5 +4,5 @@ controller('AppCtrl', ['$scope', '$angulert', '$timeout', function ($scope, $ang
   $angulert.info({message:'awesome'});
   $timeout(function() {
     $angulert.info({message:'stuff'});
-  }, 1000);
+  }, 5000);
 }]);
