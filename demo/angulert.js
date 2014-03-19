@@ -44,6 +44,8 @@ provider('$angulert', [function () {
       var _history = [];
       var _alerts = [];
 
+      var _idCounter = 0;
+
       var listeners = {
         enable: [],
         disable: [],
@@ -55,19 +57,18 @@ provider('$angulert', [function () {
         deleteHistory: []
       };
 
-      var addAlertToDom = function() {
-        
-      };
-
-      listeners.addAlert.push(addAlertToDom);
+      // listeners.addAlert.push();
 
       var angulertService = {
-
         disable: function() {
           _serviceConfig.disabled = true;
         },
         enable: function() {
           _serviceConfig.disabled = false;
+        },
+        setConfig: function(config) {
+          angular.extend(_serviceConfig, config);
+          // TODO: persist to localstorage
         },
         success: function(alert) {
           alert.classes = ['success'];
@@ -85,43 +86,52 @@ provider('$angulert', [function () {
           alert.classes = ['info'];
           this.addAlert(alert);
         },
-        setConfig: function(config) {
-          angular.extend(_serviceConfig, config);
-          // TODO: persist to localstorage
-        },
         addAlert: function(alert) {
+          alert._id = alert._id || ++_idCounter;
           if (!_serviceConfig.disabled) {
             _alerts.push(alert);
-            console.log('Added alert');
             listeners.addAlert.forEach(function(listener) {
               listener(alert);
             });
           }
+          return alert._id;
         },
         getAlert: function(id) {
-
+          for (var i = _alerts.length - 1; i >= 0; i--) {
+            if (_alerts[i]['_id'] == id) {
+              return _alerts[i];
+            }
+          }
+        },
+        updateAlert: function(alert, id) {
+          id = id || alert._id;
+          for (var i = _alerts.length - 1; i >= 0; i--) {
+            if (_alerts[i]['_id'] == id) {
+              return _alerts.splice(i, 1, alert);
+            }
+          }
+          return null;
+        },
+        deleteAlert: function(id) {
+          for (var i = _alerts.length - 1; i >= 0; i--) {
+            if (_alerts[i]['_id'] == id) {
+              return _alerts.splice(i, 1);
+            }
+          }
+          return null;
         },
         getAlerts: function() {
-          console.log('getting alerts');
           return _alerts;
         },
         clearAlerts: function() {
           _alerts = [];
-        },
-        updateAlert: function(alert) {
-
-        },
-        deleteAlert: function(id) {
-
+          _idCounter = 0;
         },
         getHistory: function() {
           return _history;
         },
         clearHistory: function() {
           _history = [];
-        },
-        toggleCenter: function() {
-          _shown = !_shown;
         }
       };
 
