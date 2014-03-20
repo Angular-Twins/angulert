@@ -41,25 +41,25 @@ describe('angulert service', function() {
     it('should add a success alert', function() {
       var alert = { message: 'Success alert'};
       $angulert.success(alert);
-      expect(alert.classes).toEqual(['success']);
+      expect(alert.classes).toEqual(['alert-success']);
     });
 
     it('should add a warn alert', function() {
       var alert = { message: 'Warn alert'};
       $angulert.warn(alert);
-      expect(alert.classes).toEqual(['warning']);
+      expect(alert.classes).toEqual(['alert-warning']);
     });
 
     it('should add an error alert', function() {
       var alert = { message: 'Error alert'};
       $angulert.error(alert);
-      expect(alert.classes).toEqual(['danger']);
+      expect(alert.classes).toEqual(['alert-danger']);
     });
 
     it('should add an info alert', function() {
       var alert = { message: 'Info alert'};
       $angulert.info(alert);
-      expect(alert.classes).toEqual(['info']);
+      expect(alert.classes).toEqual(['alert-info']);
     });
 
     it('should have a DOM element', function() {

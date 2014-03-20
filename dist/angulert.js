@@ -1,12 +1,23 @@
 angular.module("templates/angulert-center.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("templates/angulert-center.tpl.html",
     "<li class=\"dropdown\">\n" +
-    "  <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><span class=\"badge pull-right\">{{alerts.length}}</span>\n" +
+    "  <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" ng-click=\"showTray = !showTray\"><span class=\"badge pull-right\">{{alerts.length}}</span>\n" +
     "    <i class=\"glyphicon glyphicon-bell\"></i>\n" +
     "  </a>\n" +
-    "  <ul class=\"dropdown-menu\">\n" +
-    "    <li><a href=\"#\" ng-repeat=\"alert in alerts\">{{alert.message}}</a></li>\n" +
-    "  </ul>\n" +
+    "  <div class=\"angulert-tray\" ng-show=\"showTray\">\n" +
+    "    <div class=\"angulert\" ng-repeat=\"alert in alerts\" ng-class=\"alert.classes\">\n" +
+    "      <!-- <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\" ng-click=\"deleteAlert(alert)\">&times;</button> -->\n" +
+    "      <div class=\"row\">\n" +
+    "        <div class=\"col-xs-2\">\n" +
+    "          <span class=\"angulert-icon glyphicon glyphicon-envelope\"></span>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-xs-10\">\n" +
+    "          <div class=\"angulert-message\">{{alert.message}}</div>\n" +
+    "        </div>\n" +
+    "      </div>\n" +
+    "    </div>\n" +
+    "    <div ng-show=\"alerts.length === 0\">No alerts</div>\n" +
+    "  </div>\n" +
     "</li>");
 }]);
 
@@ -71,19 +82,19 @@ provider('$angulert', [function () {
           // TODO: persist to localstorage
         },
         success: function(alert) {
-          alert.classes = ['success'];
+          alert.classes = ['alert-success'];
           this.addAlert(alert);
         },
         warn: function(alert) {
-          alert.classes = ['warning'];
+          alert.classes = ['alert-warning'];
           this.addAlert(alert);
         },
         error: function(alert) {
-          alert.classes = ['danger'];
+          alert.classes = ['alert-danger'];
           this.addAlert(alert);
         },
         info: function(alert) {
-          alert.classes = ['info'];
+          alert.classes = ['alert-info'];
           this.addAlert(alert);
         },
         addAlert: function(alert) {
@@ -147,6 +158,10 @@ directive('angulertCenter', ['$angulert', function($angulert) {
     templateUrl: 'templates/angulert-center.tpl.html',
     link: function (scope, element, attrs) {
       scope.angulertService = $angulert;
+
+      scope.deleteAlert = function(alert) {
+        scope.angulertService.deleteAlert(alert._id);
+      };
 
       scope.$watch('angulertService.getAlerts()', function(newValue, oldValue){
         scope.alerts = newValue;

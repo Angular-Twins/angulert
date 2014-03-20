@@ -54,19 +54,19 @@ provider('$angulert', [function () {
           // TODO: persist to localstorage
         },
         success: function(alert) {
-          alert.classes = ['success'];
+          alert.classes = ['alert-success'];
           this.addAlert(alert);
         },
         warn: function(alert) {
-          alert.classes = ['warning'];
+          alert.classes = ['alert-warning'];
           this.addAlert(alert);
         },
         error: function(alert) {
-          alert.classes = ['danger'];
+          alert.classes = ['alert-danger'];
           this.addAlert(alert);
         },
         info: function(alert) {
-          alert.classes = ['info'];
+          alert.classes = ['alert-info'];
           this.addAlert(alert);
         },
         addAlert: function(alert) {
@@ -130,6 +130,10 @@ directive('angulertCenter', ['$angulert', function($angulert) {
     templateUrl: 'templates/angulert-center.tpl.html',
     link: function (scope, element, attrs) {
       scope.angulertService = $angulert;
+
+      scope.deleteAlert = function(alert) {
+        scope.angulertService.deleteAlert(alert._id);
+      };
 
       scope.$watch('angulertService.getAlerts()', function(newValue, oldValue){
         scope.alerts = newValue;

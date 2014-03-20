@@ -1,0 +1,37 @@
+.angulert-tray {
+  position: absolute;
+  background-color: #e9e9e9;
+  border-radius: 3px;
+  padding: 10px;
+  width: 400px;
+}
+
+.navbar-right > .angulert-tray {
+  left: auto;
+  right: 0;
+}
+
+.angulert-tray .angulert {
+  padding: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  height: 72px;
+  transition: height .5s ease;
+}
+
+.angulert-tray .angulert:hover, 
+.angulert-tray .angulert:hover .angulert-message {
+  height: auto;
+}
+
+.angulert .angulert-message {
+  height: 40px;
+  overflow: hidden;
+  transition: height .5s ease;
+}
+
+.angulert-icon {
+  font-size: 36px;
+}
