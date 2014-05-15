@@ -1,4 +1,4 @@
-angular.module('angulertDemoApp', ['angulert']).
+angular.module('angulertDemoApp', ['angulert', 'title-notify']).
 
 controller('AppCtrl', ['$scope', '$angulert', '$interval', function ($scope, $angulert, $interval) {
   $angulert.info({message:'awesome'});

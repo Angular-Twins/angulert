@@ -78,6 +78,7 @@ provider('$angulert', [function () {
           _serviceConfig.disabled = false;
         },
         setConfig: function(config) {
+          // this is intended to be user specific config
           angular.extend(_serviceConfig, config);
           // TODO: persist to localstorage
         },
@@ -107,9 +108,15 @@ provider('$angulert', [function () {
           }
           return alert._id;
         },
+        registerAddAlertListener: function(fn) {
+          // TODO:
+          // putting this in here for now but would
+          // prefer to have this as a provider method
+          listeners.addAlert.push(fn);
+        },
         getAlert: function(id) {
           for (var i = _alerts.length - 1; i >= 0; i--) {
-            if (_alerts[i]['_id'] == id) {
+            if (_alerts[i]._id === id) {
               return _alerts[i];
             }
           }
@@ -117,15 +124,27 @@ provider('$angulert', [function () {
         updateAlert: function(alert, id) {
           id = id || alert._id;
           for (var i = _alerts.length - 1; i >= 0; i--) {
-            if (_alerts[i]['_id'] == id) {
+            if (_alerts[i]._id === id) {
               return _alerts.splice(i, 1, alert);
             }
           }
           return null;
         },
+        registerDeleteAlertListener: function(fn) {
+          // TODO:
+          // putting this in here for now but would
+          // prefer to have this as a provider method
+          listeners.deleteAlert.push(fn);
+        },
         deleteAlert: function(id) {
+
+          var listenerFn = function(listener) {
+            listener(_alerts[i]);
+          };
+
           for (var i = _alerts.length - 1; i >= 0; i--) {
-            if (_alerts[i]['_id'] == id) {
+            if (_alerts[i]._id === id) {
+              listeners.deleteAlert.forEach(listenerFn);
               return _alerts.splice(i, 1);
             }
           }
@@ -133,6 +152,9 @@ provider('$angulert', [function () {
         },
         getAlerts: function() {
           return _alerts;
+        },
+        getAlertCount: function() {
+          return _alerts.length;
         },
         clearAlerts: function() {
           _alerts = [];
@@ -148,7 +170,7 @@ provider('$angulert', [function () {
 
       return angulertService;
     }
-  ]
+  ];
 }]).
 // DOM representation of angulert center display
 directive('angulertCenter', ['$angulert', function($angulert) {

@@ -7,7 +7,7 @@ var html2js = require('gulp-html2js');
 var karma = require('gulp-karma');
 var minifyCSS = require('gulp-minify-css');
 var protractor = require('gulp-protractor');
-var staticServer = require('node-static')
+var staticServer = require('node-static');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 
@@ -19,6 +19,7 @@ var path = {
   js: 'src/**/*.js',
   css: 'src/**/*.css',
   dist: 'dist',
+  plugins: 'plugins/**/*.js',
   templates: 'templates/**/*.html'
 };
 
@@ -31,7 +32,10 @@ gulp.task('test', function() {
 });
 
 gulp.task('clean', function() {
-  return gulp.src(path.dist).pipe(clean());
+  var distStream = gulp.src(path.dist);
+  var demoPluginsStream = gulp.src('demo/' + path.plugins);
+  return es.merge(distStream, demoPluginsStream)
+  .pipe(clean());
 });
 
 gulp.task('build-js', ['clean'], function () {
@@ -58,6 +62,17 @@ gulp.task('build-css', ['clean'], function () {
     .pipe(gulp.dest('./dist'));
 });
 
+gulp.task('copy-plugins', ['clean'], function () {
+  return gulp.src(path.plugins)
+    .pipe(gulp.dest('./dist/plugins'))
+    .pipe(concat('plugins-all.js'))
+    .pipe(gulp.dest('./demo/plugins'))
+    .pipe(gulp.dest('./dist/plugins'))
+    .pipe(rename('plugins-all.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('./dist/plugins'));
+});
+
 gulp.task('server', function(next) {
   var server = new staticServer.Server('./demo');
   var port = 8000;
@@ -72,10 +87,7 @@ gulp.task('server', function(next) {
 });
 
 gulp.task('watch', function() {
-  gulp.watch([path.js, path.css, path.templates], ['build-js', 'build-css']);
+  gulp.watch([path.js, path.css, path.plugins, path.templates], ['build-js', 'build-css', 'copy-plugins']);
 });
 
-gulp.task('default', [ 'build-js', 'build-css', 'watch', 'test', 'server']);
-
-
-
+gulp.task('default', [ 'build-js', 'build-css', 'copy-plugins', 'watch', 'test', 'server']);
