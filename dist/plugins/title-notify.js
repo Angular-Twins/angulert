@@ -3,7 +3,7 @@ directive('titleNotify', ['$angulert', function($angulert) {
   return {
     restrict: 'EA',
     link: function (scope, element, attrs) {
-      scope.alertCount = $angulert.getAlertCount();
+      scope.alertCount = $angulert.getCount();
 
       $angulert.registerAddAlertListener(function(alert) {
         scope.alertCount++;

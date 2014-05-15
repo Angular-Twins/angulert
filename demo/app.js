@@ -3,15 +3,9 @@ angular.module('angulertDemoApp', ['angulert', 'title-notify']).
 controller('AppCtrl', ['$scope', '$angulert', '$interval', function ($scope, $angulert, $interval) {
   $angulert.info({message:'awesome'});
 
-  $scope.addBallsack = function() {
+  $scope.addMessages = function() {
     $angulert.error({
-      message: 'Ballsack ballsack ballsack ballsack ballsack Ballsack ballsack ballsack ballsack ballsack Ballsack ballsack ballsack ballsack ballsack Ballsack ballsack ballsack ballsack ballsack',
-      icon: 'envelope'
-    });
-  };
-  $scope.add2Ballsacks = function() {
-    $angulert.error({
-      message: 'ballsack ballsack ballsack ballsack ballsack ballsack ballsack ballsack',
+      message: 'Messages Messages Messages Messages Messages Messages Messages Messages Messages Messages Messages Messages Messages Messages Messages Messages Messages Messages Messages Messages',
       icon: 'envelope'
     });
   };

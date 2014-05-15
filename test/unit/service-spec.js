@@ -39,25 +39,33 @@ describe('angulert service', function() {
     });
 
     it('should add a success alert', function() {
-      var alert = { message: 'Success alert'};
+      var alert = {
+        message: 'Success alert'
+      };
       $angulert.success(alert);
       expect(alert.classes).toEqual(['alert-success']);
     });
 
     it('should add a warn alert', function() {
-      var alert = { message: 'Warn alert'};
+      var alert = {
+        message: 'Warn alert'
+      };
       $angulert.warn(alert);
       expect(alert.classes).toEqual(['alert-warning']);
     });
 
     it('should add an error alert', function() {
-      var alert = { message: 'Error alert'};
+      var alert = {
+        message: 'Error alert'
+      };
       $angulert.error(alert);
       expect(alert.classes).toEqual(['alert-danger']);
     });
 
     it('should add an info alert', function() {
-      var alert = { message: 'Info alert'};
+      var alert = {
+        message: 'Info alert'
+      };
       $angulert.info(alert);
       expect(alert.classes).toEqual(['alert-info']);
     });
@@ -91,7 +99,10 @@ describe('angulert service', function() {
         _id: '123id123'
       };
       $angulert.addAlert(alert);
-      expect($angulert.updateAlert({message:'Different Alert', id:'notthisid'})).toBe(null);
+      expect($angulert.updateAlert({
+        message: 'Different Alert',
+        id: 'notthisid'
+      })).toBe(null);
       expect($angulert.getAlerts().length).toBe(1);
 
     });
@@ -122,7 +133,10 @@ describe('angulert service', function() {
         message: 'Alert',
         _id: '123id123'
       });
-      expect($angulert.getAlerts()).toEqual([{message: 'Alert',_id: '123id123'}]);
+      expect($angulert.getAlerts()).toEqual([{
+        message: 'Alert',
+        _id: '123id123'
+      }]);
     });
 
     it('should get an alert by id', function() {
@@ -130,7 +144,10 @@ describe('angulert service', function() {
         message: 'Alert',
         _id: '123id123'
       });
-      expect($angulert.getAlert('123id123')).toEqual({message: 'Alert',_id: '123id123'});
+      expect($angulert.getAlert('123id123')).toEqual({
+        message: 'Alert',
+        _id: '123id123'
+      });
     });
 
   });
@@ -185,6 +202,41 @@ describe('angulert service', function() {
       });
       $angulert.deleteAlert(id);
       expect($angulert.getAlerts().length).toBe(0);
+    });
+
+  });
+
+  describe('listeners', function() {
+    var $angulert;
+
+    beforeEach(inject(function($injector) {
+      $angulert = $injector.get('$angulert');
+      $angulert.clearAlerts();
+    }));
+
+    it('should register an add listener', function() {
+      var count = $angulert.getCount();
+      $angulert.registerAddAlertListener(function(){
+        count++;
+      });
+      expect(count).toBe(0);
+      $angulert.addAlert({
+        message: 'Register Add Listener'
+      });
+      expect(count).toBe(1);
+    });
+
+    it('should register an delete listener', function() {
+      var id = $angulert.addAlert({
+        message: 'Register Add Listener'
+      });
+      var count = $angulert.getCount();
+      expect(count).toBe(1);
+      $angulert.registerDeleteAlertListener(function(){
+        count--;
+      });
+      $angulert.deleteAlert(id);
+      expect(count).toBe(0);
     });
 
   });

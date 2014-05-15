@@ -125,7 +125,7 @@ provider('$angulert', [function () {
         getAlerts: function() {
           return _alerts;
         },
-        getAlertCount: function() {
+        getCount: function() {
           return _alerts.length;
         },
         clearAlerts: function() {
